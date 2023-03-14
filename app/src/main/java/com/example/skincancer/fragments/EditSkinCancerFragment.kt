@@ -149,13 +149,13 @@ lateinit var buttonCapture: Button
 
 	when (v.id) {
 		R.id.crudSkinCancerSearch -> {
-			crudSkinCancerSearch()
+			editSkinCancerSearch()
 		}			
 		R.id.crudSkinCancerOK -> {
-			crudSkinCancerOK()
+			editSkinCancerOK()
 		}
 		R.id.crudSkinCancerCancel -> {
-			crudSkinCancerCancel()
+			editSkinCancerCancel()
 		}
 		R.id.buttonPickPhoto -> {
 			onPickImage()
@@ -166,7 +166,7 @@ lateinit var buttonCapture: Button
 	  }
     }
     
-	private fun crudSkinCancerSearch() {
+	private fun editSkinCancerSearch() {
 		idData = idTextField.text.toString()
 		skinCancerBean.setId(idData)
 		
@@ -194,7 +194,7 @@ lateinit var buttonCapture: Button
 		}
 	}
 
-	private fun crudSkinCancerOK() {
+	private fun editSkinCancerOK() {
 	if (imagesImageView.getDrawable() != null) {
 			//Convert image to bitmap
 			val bitmap = (imagesImageView.getDrawable() as BitmapDrawable).getBitmap()
@@ -226,7 +226,7 @@ lateinit var buttonCapture: Button
 			}
 	}
 
-	private fun crudSkinCancerCancel() {
+	private fun editSkinCancerCancel() {
 		skinCancerBean.resetData()
 		idTextField.setText("")
 		datesTextField.setText("")
