@@ -55,12 +55,7 @@ class DataBase (context: Context, factory: SQLiteDatabase.CursorFactory?) :
             database.query(SkinCancerTABLENAME, SkinCancerCOLS, null, null, null, null, null)
         cursor.moveToFirst()
         while (!cursor.isAfterLast()) {
-            val skincancervo = SkinCancerVO()
-            skincancervo.setId(cursor.getString(SkinCancerCOLID))
-            skincancervo.setDates(cursor.getString(SkinCancerCOLDATES))
-            skincancervo.setImages(cursor.getString(SkinCancerCOLIMAGES))
-            skincancervo.setOutcome(cursor.getString(SkinCancerCOLOUTCOME))
-            res.add(skincancervo)
+            res.add(setData(cursor))
             cursor.moveToNext()
         }
         cursor.close()
@@ -69,12 +64,7 @@ class DataBase (context: Context, factory: SQLiteDatabase.CursorFactory?) :
 
     fun createSkinCancer(skincancervo: SkinCancerVO) {
         database = writableDatabase
-        val wr = ContentValues(SkinCancerNUMBERCOLS)
-        wr.put(SkinCancerCOLS[SkinCancerCOLID], skincancervo.getId())
-        wr.put(SkinCancerCOLS[SkinCancerCOLDATES], skincancervo.getDates())
-        wr.put(SkinCancerCOLS[SkinCancerCOLIMAGES], skincancervo.getImages())
-        wr.put(SkinCancerCOLS[SkinCancerCOLOUTCOME], skincancervo.getOutcome())
-        database.insert(SkinCancerTABLENAME, SkinCancerCOLS[1], wr)
+        database.insert(SkinCancerTABLENAME, SkinCancerCOLS[1], putData(skincancervo))
     }
 
     fun searchBySkinCancerid(value: String): ArrayList<SkinCancerVO> {
@@ -87,12 +77,7 @@ class DataBase (context: Context, factory: SQLiteDatabase.CursorFactory?) :
         )
         cursor.moveToFirst()
         while (!cursor.isAfterLast()) {
-            val skincancervo = SkinCancerVO()
-            skincancervo.setId(cursor.getString(SkinCancerCOLID))
-            skincancervo.setDates(cursor.getString(SkinCancerCOLDATES))
-            skincancervo.setImages(cursor.getString(SkinCancerCOLIMAGES))
-            skincancervo.setOutcome(cursor.getString(SkinCancerCOLOUTCOME))
-            res.add(skincancervo)
+            res.add(setData(cursor))
             cursor.moveToNext()
         }
         cursor.close()
@@ -109,12 +94,7 @@ class DataBase (context: Context, factory: SQLiteDatabase.CursorFactory?) :
         )
         cursor.moveToFirst()
         while (!cursor.isAfterLast()) {
-            val skincancervo = SkinCancerVO()
-            skincancervo.setId(cursor.getString(SkinCancerCOLID))
-            skincancervo.setDates(cursor.getString(SkinCancerCOLDATES))
-            skincancervo.setImages(cursor.getString(SkinCancerCOLIMAGES))
-            skincancervo.setOutcome(cursor.getString(SkinCancerCOLOUTCOME))
-            res.add(skincancervo)
+            res.add(setData(cursor))
             cursor.moveToNext()
         }
         cursor.close()
@@ -131,12 +111,7 @@ class DataBase (context: Context, factory: SQLiteDatabase.CursorFactory?) :
         )
         cursor.moveToFirst()
         while (!cursor.isAfterLast()) {
-            val skincancervo = SkinCancerVO()
-            skincancervo.setId(cursor.getString(SkinCancerCOLID))
-            skincancervo.setDates(cursor.getString(SkinCancerCOLDATES))
-            skincancervo.setImages(cursor.getString(SkinCancerCOLIMAGES))
-            skincancervo.setOutcome(cursor.getString(SkinCancerCOLOUTCOME))
-            res.add(skincancervo)
+            res.add(setData(cursor))
             cursor.moveToNext()
         }
         cursor.close()
@@ -153,12 +128,7 @@ class DataBase (context: Context, factory: SQLiteDatabase.CursorFactory?) :
         )
         cursor.moveToFirst()
         while (!cursor.isAfterLast()) {
-            val skincancervo = SkinCancerVO()
-            skincancervo.setId(cursor.getString(SkinCancerCOLID))
-            skincancervo.setDates(cursor.getString(SkinCancerCOLDATES))
-            skincancervo.setImages(cursor.getString(SkinCancerCOLIMAGES))
-            skincancervo.setOutcome(cursor.getString(SkinCancerCOLOUTCOME))
-            res.add(skincancervo)
+            res.add(setData(cursor))
             cursor.moveToNext()
         }
         cursor.close()
@@ -168,19 +138,35 @@ class DataBase (context: Context, factory: SQLiteDatabase.CursorFactory?) :
 
     fun editSkinCancer(skincancervo: SkinCancerVO) {
         database = writableDatabase
-        val wr = ContentValues(SkinCancerNUMBERCOLS)
-        wr.put(SkinCancerCOLS[SkinCancerCOLID], skincancervo.getId())
-        wr.put(SkinCancerCOLS[SkinCancerCOLDATES], skincancervo.getDates())
-        wr.put(SkinCancerCOLS[SkinCancerCOLIMAGES], skincancervo.getImages())
-        wr.put(SkinCancerCOLS[SkinCancerCOLOUTCOME], skincancervo.getOutcome())
+
         val args = arrayOf(skincancervo.getId())
-        database.update(SkinCancerTABLENAME, wr, "id =?", args)
+        database.update(SkinCancerTABLENAME, putData(skincancervo), "id =?", args)
     }
 
     fun deleteSkinCancer(value: String) {
         database = writableDatabase
         val args = arrayOf(value)
         database.delete(SkinCancerTABLENAME, "id = ?", args)
+    }
+
+    private fun setData(cursor: Cursor): SkinCancerVO {
+        val skincancervo = SkinCancerVO()
+        skincancervo.setId(cursor.getString(SkinCancerCOLID))
+        skincancervo.setDates(cursor.getString(SkinCancerCOLDATES))
+        skincancervo.setImages(cursor.getString(SkinCancerCOLIMAGES))
+        skincancervo.setOutcome(cursor.getString(SkinCancerCOLOUTCOME))
+
+        return skincancervo
+    }
+
+    private fun putData(skincancervo: SkinCancerVO): ContentValues {
+        val wr = ContentValues(SkinCancerNUMBERCOLS)
+        wr.put(SkinCancerCOLS[SkinCancerCOLID], skincancervo.getId())
+        wr.put(SkinCancerCOLS[SkinCancerCOLDATES], skincancervo.getDates())
+        wr.put(SkinCancerCOLS[SkinCancerCOLIMAGES], skincancervo.getImages())
+        wr.put(SkinCancerCOLS[SkinCancerCOLOUTCOME], skincancervo.getOutcome())
+
+        return wr
     }
 
 }
