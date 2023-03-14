@@ -126,10 +126,10 @@ class CreateSkinCancerFragment : Fragment(), View.OnClickListener {
 		}
 		when (v.id) {
 			R.id.crudSkinCancerOK -> {
-				crudSkinCancerOK()
+				createSkinCancerOK()
 			}
 			R.id.crudSkinCancerCancel -> {
-				crudSkinCancerCancel()
+				createSkinCancerCancel()
 			}
 		R.id.buttonPickPhoto -> {
 				onPickImage()
@@ -140,7 +140,7 @@ class CreateSkinCancerFragment : Fragment(), View.OnClickListener {
 		}
 	}
 
-	private fun crudSkinCancerOK () {
+	private fun createSkinCancerOK () {
 	if (imagesImageView.getDrawable() != null) {
 			//Convert image to bitmap
 			val bitmap = (imagesImageView.getDrawable() as BitmapDrawable).getBitmap()
@@ -172,7 +172,7 @@ class CreateSkinCancerFragment : Fragment(), View.OnClickListener {
 			}
 	}
 
-	private fun crudSkinCancerCancel () {
+	private fun createSkinCancerCancel () {
 		skinCancerBean.resetData()
 		idTextField.setText("")
 		datesTextField.setText("")
