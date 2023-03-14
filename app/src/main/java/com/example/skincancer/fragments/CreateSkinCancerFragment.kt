@@ -116,6 +116,26 @@ class CreateSkinCancerFragment : Fragment(), View.OnClickListener {
 
 	    return root
 	}
+    
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+		super.onActivityResult(requestCode, resultCode, data)
+		if (requestCode == CAPTUREIMAGEACTIVITYREQUESTCODE) {
+			if (resultCode == Activity.RESULT_OK) {
+				val bitmap = getCapturedImage()
+				rotateIfRequired(bitmap)
+				imagesImageView.setImageBitmap(bitmap)
+			} else { // Result was a failure
+				Toast.makeText(myContext, "Picture wasn't taken!", Toast.LENGTH_SHORT).show()
+			}
+		} else if (requestCode == PICKIMAGEACTIVITYREQUESTCODE) {
+			if (resultCode == Activity.RESULT_OK) {
+				val takenImage = loadFromUri(data?.data)
+				imagesImageView.setImageBitmap(takenImage)
+			} else { // Result was a failure
+				Toast.makeText(myContext, "Picture wasn't selected!", Toast.LENGTH_SHORT).show()
+			}
+		}
+	}
 
 	override fun onClick(v: View) {
 		val imm = myContext.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -307,26 +327,6 @@ class CreateSkinCancerFragment : Fragment(), View.OnClickListener {
 			e.printStackTrace()
 		}
 		return image
-	}
-
-	override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-		super.onActivityResult(requestCode, resultCode, data)
-		if (requestCode == CAPTUREIMAGEACTIVITYREQUESTCODE) {
-			if (resultCode == Activity.RESULT_OK) {
-				val bitmap = getCapturedImage()
-				rotateIfRequired(bitmap)
-				imagesImageView.setImageBitmap(bitmap)
-			} else { // Result was a failure
-				Toast.makeText(myContext, "Picture wasn't taken!", Toast.LENGTH_SHORT).show()
-			}
-		} else if (requestCode == PICKIMAGEACTIVITYREQUESTCODE) {
-			if (resultCode == Activity.RESULT_OK) {
-				val takenImage = loadFromUri(data?.data)
-				imagesImageView.setImageBitmap(takenImage)
-			} else { // Result was a failure
-				Toast.makeText(myContext, "Picture wasn't selected!", Toast.LENGTH_SHORT).show()
-			}
-		}
 	}
 		
 }
