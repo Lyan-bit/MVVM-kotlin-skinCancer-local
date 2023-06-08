@@ -8,8 +8,6 @@ import com.example.skincancer.fragments.CreateSkinCancerFragment
 import com.example.skincancer.fragments.EditSkinCancerFragment
 import com.example.skincancer.fragments.ImageRecognitionFragment
 import com.example.skincancer.fragments.SearchSkinCancerdatesFragment
-import com.example.skincancer.fragments.DeleteSkinFragment
-import com.example.skincancer.fragments.ListSkinFragment
 
 class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     companion object {
