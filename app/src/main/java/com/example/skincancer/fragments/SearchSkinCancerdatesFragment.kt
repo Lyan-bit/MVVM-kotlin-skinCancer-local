@@ -122,11 +122,11 @@ class SearchSkinCancerdatesFragment : Fragment(), View.OnClickListener, AdapterV
 			Toast.makeText(myContext, "Errors: " + skinCancerBean.errors(), Toast.LENGTH_LONG).show()
 		} else {
 				val selectedItem = model.searchBySkindate(datesData)
-				idTextView.text = selectedItem[0].getId().toString()
-				datesTextView.text = selectedItem[0].getDates().toString()
+				idTextView.text = selectedItem[0].id.toString()
+				datesTextView.text = selectedItem[0].dates.toString()
       dimages = try {
 				// convert base64 to bitmap android
-				val decodedString: ByteArray = Base64.decode(selectedItem[0].getImages(), Base64.DEFAULT)
+				val decodedString: ByteArray = Base64.decode(selectedItem[0].images, Base64.DEFAULT)
 				val decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.size)
 					decodedByte
 				}
@@ -137,7 +137,7 @@ class SearchSkinCancerdatesFragment : Fragment(), View.OnClickListener, AdapterV
 				viewLifecycleOwner.lifecycleScope.launchWhenStarted {
 					imagesImageView.setImageBitmap(dimages)
 				}
-				outcomeTextView.text = selectedItem[0].getOutcome().toString()
+				outcomeTextView.text = selectedItem[0].outcome.toString()
 				Toast.makeText(myContext, "search SkinCancer done!", Toast.LENGTH_LONG).show()
 				
 		}
