@@ -4,10 +4,7 @@ import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.example.skincancer.fragments.CreateSkinCancerFragment
-import com.example.skincancer.fragments.EditSkinCancerFragment
-import com.example.skincancer.fragments.ImageRecognitionFragment
-import com.example.skincancer.fragments.SearchSkinCancerdatesFragment
+import com.example.skincancer.fragments.*
 
 class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     companion object {
@@ -21,13 +18,13 @@ class SectionsPagerAdapter(private val mContext: Context, fm: FragmentManager) :
                     CreateSkinCancerFragment.newInstance(mContext) 
                 }
                  1 -> { 
-                    ListSkinCancerFragment.newInstance(mContext) 
+                    ListSkinFragment.newInstance(mContext)
                 }
                  2 -> { 
                     EditSkinCancerFragment.newInstance(mContext) 
                 }
                  3 -> { 
-                    DeleteSkinCancerFragment.newInstance(mContext) 
+                    DeleteSkinFragment.newInstance(mContext)
                 }
                  4 -> { 
                     SearchSkinCancerdatesFragment.newInstance(mContext) 
