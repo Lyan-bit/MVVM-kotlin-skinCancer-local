@@ -40,10 +40,10 @@ class SkinViewModel constructor(context: Context): ViewModel() {
         } else {
             val vo: SkinCancerVO = res[0]
             val itemx = SkinCancer.createByPKSkinCancer(_val)
-            itemx.id = vo.getId()
-            itemx.dates = vo.getDates()
-            itemx.images = vo.getImages()
-            itemx.outcome = vo.getOutcome()
+            itemx.id = vo.id
+            itemx.dates = vo.dates
+            itemx.images = vo.images
+            itemx.outcome = vo.outcome
             itemx
         }
     }
@@ -56,7 +56,7 @@ class SkinViewModel constructor(context: Context): ViewModel() {
         currentSkins = dbm.listSkin()
         val res: ArrayList<String> = ArrayList()
         for (skin in currentSkins.indices) {
-            res.add(currentSkins[skin].getId())
+            res.add(currentSkins[skin].id)
         }
         return res
     }
@@ -65,7 +65,7 @@ class SkinViewModel constructor(context: Context): ViewModel() {
         currentSkins = dbm.listSkin()
         val res: ArrayList<String> = ArrayList()
         for (skin in currentSkins.indices) {
-            res.add(currentSkins[skin].getOutcome())
+            res.add(currentSkins[skin].outcome)
         }
         return res
     }
@@ -74,7 +74,7 @@ class SkinViewModel constructor(context: Context): ViewModel() {
         currentSkins = dbm.listSkin()
         val res: ArrayList<String> = ArrayList()
         for (skin in currentSkins.indices) {
-            res.add(currentSkins[skin].getImages())
+            res.add(currentSkins[skin].images)
         }
         return res
     }
@@ -83,7 +83,7 @@ class SkinViewModel constructor(context: Context): ViewModel() {
         currentSkins = dbm.listSkin()
         val res: ArrayList<String> = ArrayList()
         for (skin in currentSkins.indices) {
-            res.add(currentSkins[skin].getDates())
+            res.add(currentSkins[skin].dates)
         }
         return res
     }
